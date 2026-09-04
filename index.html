@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega School GK Quiz</title>
+    <title>School GK Quiz</title>
     <style>
         * { box-sizing: border-box; }
         body {
@@ -138,85 +138,84 @@
 
 <div class="quiz-card">
     <div class="header">
-        <h1>🧠 School GK Quiz</h1>
+        <h1>🧠 General Knowledge Quiz</h1>
         <div class="progress-box"><div class="progress-bar" id="progress"></div></div>
     </div>
 
     <div id="quiz-body">
-        <div class="question-box" id="question">Question Text</div>
+        <div class="question-box" id="question">Loading Question...</div>
         <div class="options-list" id="options"></div>
         <div class="explanation" id="explanation"></div>
 
         <div class="footer-controls">
             <div class="score-board">
-                Right: <span id="correct-count" style="color:#10b981;">0</span> | 
+                Correct: <span id="correct-count" style="color:#10b981;">0</span> | 
                 Wrong: <span id="wrong-count" style="color:#ef4444;">0</span>
             </div>
-            <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question➔</button>
+            <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question ➔</button>
         </div>
     </div>
 
     <div class="result-container" id="result">
-        <h2 style="color:#333;">🎉 Finish Quiz !</h2>
-        <p>Final Score:</p>
+        <h2 style="color:#333;">🎉 Quiz Completed!</h2>
+        <p>Your Final Score:</p>
         <div class="result-score" id="final-score">0 / 15</div>
-        <p id="result-message" style="color:#6b7280; margin-bottom:20px;"></p>
-        <button class="restart-btn" id="restart-btn" style="display:inline-block;" onclick="restartQuiz()">🔄 Try Agian</button>
+        <p id="result-message" style="color:#6b7280; margin-bottom:20px; font-weight: 600;"></p>
+        <button class="restart-btn" id="restart-btn" style="display:inline-block;" onclick="restartQuiz()">🔄 Try Again</button>
     </div>
 </div>
 
 <script>
     const quizData = [
-        { q: "1. Bharat ki rajdhani (Capital) kya hai?", opts: ["Mumbai", "Delhi", "Kolkata", "Chennai"], c: 1, info: "Sahi Uttar: Delhi" },
-        { q: "2. Bharat ka rashtriya pakshi kaun sa hai?", opts: ["Tota", "Kabutar", "Mor", "Baaz"], c: 2, info: "Sahi Uttar: Mor" },
-        { q: "3. Ek saal me kitne din hote hain?", opts: ["300", "365", "350", "400"], c: 1, info: "Sahi Uttar: 365 din" },
-        { q: "4. Bharat ka rashtriya phool kaun sa hai?", opts: ["Gulaab", "Kamal", "Genda", "Surajmukhi"], c: 1, info: "Sahi Uttar: Kamal" },
-        { q: "5. Vishwa ka sabse bada mahasagar (Ocean) kaun sa hai?", opts: ["Atlantic", "Indian Ocean", "Pacific Ocean", "Arctic"], c: 2, info: "Sahi Uttar: Pacific Ocean (Prashant Mahasagar)" },
-        { q: "6. Bharat ke pehle Pradhan Mantri kaun the?", opts: ["Mahatma Gandhi", "Pt. Jawaharlal Nehru", "Sardar Patel", "Dr. BR Ambedkar"], c: 1, info: "Sahi Uttar: Pt. Jawaharlal Nehru" },
-        { q: "7. Kis grah (Planet) ko 'Red Planet' kaha jata hai?", opts: ["Shukra (Venus)", "Mangal (Mars)", "Bhaspati (Jupiter)", "Shani (Saturn)"], c: 1, info: "Sahi Uttar: Mangal (Mars)" },
-        { q: "8. Human body me kitni bones (haddiyan) hoti hain?", opts: ["206", "300", "208", "190"], c: 0, info: "Sahi Uttar: 206" },
-        { q: "9. Bharat ka rashtriya khel kaun sa hai?", opts: ["Cricket", "Football", "Hockey", "Kabaddi"], c: 2, info: "Sahi Uttar: Hockey" },
-        { q: "10. Computer ka dimaag (Brain) kise kaha jata hai?", opts: ["RAM", "Hard Disk", "CPU", "Monitor"], c: 2, info: "Sahi Uttar: CPU" },
-        { q: "11. Bharat ki sabse lambi nadi kaun si hai?", opts: ["Yamuna", "Ganga", "Godavari", "Narmada"], c: 1, info: "Sahi Uttar: Ganga" },
-        { q: "12. Saur mandal (Solar System) ka sabse bada grah kaun sa hai?", opts: ["Bhaspati (Jupiter)", "Shani", "Prithvi", "Mangal"], c: 0, info: "Sahi Uttar: Bhaspati (Jupiter)" },
-        { q: "13. Bharat kab azad hua tha?", opts: ["26 Jan 1950", "15 Aug 1947", "2 Oct 1869", "14 Aug 1947"], c: 1, info: "Sahi Uttar: 15 August 1947" },
-        { q: "14. Taj Mahal Bharat ke kis shehar me hai?", opts: ["Delhi", "Jaipur", "Agra", "Lucknow"], c: 2, info: "Sahi Uttar: Agra" },
-        { q: "15. Kagaz (Paper) ka aavishkar kis desh me hua tha?", opts: ["Bharat", "China", "Japan", "America"], c: 1, info: "Sahi Uttar: China" }
+        { q: "1. What is the capital of India?", opts: ["Mumbai", "Delhi", "Kolkata", "Chennai"], c: 1, info: "Correct Answer: Delhi" },
+        { q: "2. Which is the national bird of India?", opts: ["Parrot", "Pigeon", "Peacock", "Eagle"], c: 2, info: "Correct Answer: Peacock" },
+        { q: "3. How many days are there in a normal year?", opts: ["300", "365", "350", "400"], c: 1, info: "Correct Answer: 365 Days" },
+        { q: "4. Which is the national flower of India?", opts: ["Rose", "Lotus", "Marigold", "Sunflower"], c: 1, info: "Correct Answer: Lotus" },
+        { q: "5. Which is the largest ocean in the world?", opts: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"], c: 2, info: "Correct Answer: Pacific Ocean" },
+        { q: "6. Who was the first Prime Minister of India?", opts: ["Mahatma Gandhi", "Pt. Jawaharlal Nehru", "Sardar Patel", "Dr. B.R. Ambedkar"], c: 1, info: "Correct Answer: Pt. Jawaharlal Nehru" },
+        { q: "7. Which planet is known as the 'Red Planet'?", opts: ["Venus", "Mars", "Jupiter", "Saturn"], c: 1, info: "Correct Answer: Mars" },
+        { q: "8. How many bones are there in an adult human body?", opts: ["206", "300", "208", "190"], c: 0, info: "Correct Answer: 206" },
+        { q: "9. Which is the national sport of India?", opts: ["Cricket", "Football", "Hockey", "Kabaddi"], c: 2, info: "Correct Answer: Hockey" },
+        { q: "10. Which component is known as the Brain of the Computer?", opts: ["RAM", "Hard Disk", "CPU", "Monitor"], c: 2, info: "Correct Answer: CPU" },
+        { q: "11. Which is the longest river in India?", opts: ["Yamuna", "Ganga", "Godavari", "Narmada"], c: 1, info: "Correct Answer: Ganga" },
+        { q: "12. Which is the largest planet in our Solar System?", opts: ["Jupiter", "Saturn", "Earth", "Mars"], c: 0, info: "Correct Answer: Jupiter" },
+        { q: "13. In which year did India get Independence?", opts: ["1950", "1947", "1869", "1942"], c: 1, info: "Correct Answer: 15th August 1947" },
+        { q: "14. Where is the Taj Mahal located in India?", opts: ["Delhi", "Jaipur", "Agra", "Lucknow"], c: 2, info: "Correct Answer: Agra" },
+        { q: "15. Which country invented Paper?", opts: ["India", "China", "Japan", "America"], c: 1, info: "Correct Answer: China" }
     ];
 
-    let index = 0, right = 0, wrong = 0;
-
-    const qEl = document.getElementById("question");
-    const optEl = document.getElementById("options");
-    const expEl = document.getElementById("explanation");
-    const nextBtn = document.getElementById("next-btn");
-    const progressEl = document.getElementById("progress");
+    let index = 0;
+    let right = 0;
+    let wrong = 0;
 
     function loadQuestion() {
         resetState();
         let curr = quizData[index];
-        qEl.innerText = curr.q;
-        progressEl.style.width = ((index) / quizData.length * 100) + "%";
+        document.getElementById("question").innerText = curr.q;
+        document.getElementById("progress").style.width = ((index) / quizData.length * 100) + "%";
 
+        const optContainer = document.getElementById("options");
         curr.opts.forEach((o, i) => {
             const btn = document.createElement("button");
             btn.classList.add("opt-btn");
             btn.innerText = o;
             btn.onclick = () => select(i, btn);
-            optEl.appendChild(btn);
+            optContainer.appendChild(btn);
         });
     }
 
     function resetState() {
-        nextBtn.style.display = "none";
-        expEl.style.display = "none";
-        optEl.innerHTML = "";
+        document.getElementById("next-btn").style.display = "none";
+        document.getElementById("explanation").style.display = "none";
+        document.getElementById("options").innerHTML = "";
     }
 
     function select(i, btn) {
         let curr = quizData[index];
-        let allBtns = optEl.getElementsByClassName("opt-btn");
-        for (let b of allBtns) b.disabled = true;
+        let allBtns = document.getElementById("options").getElementsByClassName("opt-btn");
+        for (let b of allBtns) {
+            b.disabled = true;
+        }
 
         if (i === curr.c) {
             btn.classList.add("correct");
@@ -229,9 +228,15 @@
             document.getElementById("wrong-count").innerText = wrong;
         }
 
-        expEl.innerText = curr.info;
-        expEl.style.display = "block";
-        nextBtn.style.display = "inline-block";
+        document.getElementById("explanation").innerText = curr.info;
+        document.getElementById("explanation").style.display = "block";
+        
+        if (index === quizData.length - 1) {
+            document.getElementById("next-btn").innerText = "Finish Quiz 🏁";
+        } else {
+            document.getElementById("next-btn").innerText = "Next Question ➔";
+        }
+        document.getElementById("next-btn").style.display = "inline-block";
     }
 
     function nextQuestion() {
@@ -246,18 +251,29 @@
     function showResult() {
         document.getElementById("quiz-body").style.display = "none";
         document.getElementById("result").style.display = "block";
-        progressEl.style.width = "100%";
+        document.getElementById("progress").style.width = "100%";
         document.getElementById("final-score").innerText = right + " / " + quizData.length;
-        let msg = right >= 12 ? "Shandar Performance! 🎉" : right >= 8 ? "Well Done! " Keep Trying: "! 💪";
+        
+        let msg = "";
+        if (right >= 12) {
+            msg = "Well Done! Excellent Performance! 🎉";
+        } else if (right >= 8) {
+            msg = "Good Job! Great Effort! 👍";
+        } else {
+            msg = "Keep Trying! Better Luck Next Time! 💪";
+        }
         document.getElementById("result-message").innerText = msg;
     }
 
     function restartQuiz() {
-        index = 0; right = 0; wrong = 0;
+        index = 0;
+        right = 0;
+        wrong = 0;
         document.getElementById("correct-count").innerText = "0";
         document.getElementById("wrong-count").innerText = "0";
         document.getElementById("quiz-body").style.display = "block";
         document.getElementById("result").style.display = "none";
+        document.getElementById("next-btn").innerText = "Next Question ➔";
         loadQuestion();
     }
 
