@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School GK Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .quiz-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .options-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            background-color: #e7e7e7;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+        }
+        .options-btn:hover {
+            background-color: #ddd;
+        }
+        .correct {
+            background-color: #4CAF50 !important;
+            color: white;
+        }
+        .wrong {
+            background-color: #f44336 !important;
+            color: white;
+        }
+        #next-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            width: 100%;
+            font-size: 16px;
+        }
+        .result-box {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .answer-explain {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e8f4f8;
+            border-left: 4px solid #008CBA;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>School GK Quiz</h1>
+    <div id="quiz">
+        <div id="question" class="question">Question Text</div>
+        <div id="options-container"></div>
+        <div id="explanation" class="answer-explain"></div>
+        <button id="next-btn" onclick="nextQuestion()">Agla Sawaal</button>
+    </div>
+    
+    <div class="result-box">
+        <p>Sahi Utar (Right): <span id="right-count" style="color: green;">0</span></p>
+        <p>Galat Utar (Wrong): <span id="wrong-count" style="color: red;">0</span></p>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        {
+            question: "1. Bharat ki rajdhani (Capital) kya hai?",
+            options: ["Mumbai", "Delhi", "Kolkata", "Chennai"],
+            correct: 1,
+            info: "Sahi utar hai: Delhi"
+        },
+        {
+            question: "2. Bharat ka rashtriya pakshi kaun sa hai?",
+            options: ["Tota", "Kabutar", "Mor", "Baaz"],
+            correct: 2,
+            info: "Sahi utar hai: Mor"
+        },
+        {
+            question: "3. Ek saal me kitne din hote hain?",
+            options: ["300", "365", "350", "400"],
+            correct: 1,
+            info: "Sahi utar hai: 365 din"
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let rightAnswers = 0;
+    let wrongAnswers = 0;
+
+    const questionElement = document.getElementById("question");
+    const optionsContainer = document.getElementById("options-container");
+    const explanationElement = document.getElementById("explanation");
+    const nextButton = document.getElementById("next-btn");
+
+    function loadQuestion() {
+        resetState();
+        let currentQuiz = quizData[currentQuestionIndex];
+        questionElement.innerText = currentQuiz.question;
+
+        currentQuiz.options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.innerText = option;
+            button.classList.add("options-btn");
+            button.onclick = () => selectOption(index, button);
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function resetState() {
+        nextButton.style.display = "none";
+        explanationElement.style.display = "none";
+        optionsContainer.innerHTML = "";
+    }
+
+    function selectOption(selectedIndex, selectedButton) {
+        let currentQuiz = quizData[currentQuestionIndex];
+        let buttons = optionsContainer.getElementsByClassName("options-btn");
+
+        // Disable all buttons after choice
+        for (let btn of buttons) {
+            btn.disabled = true;
+        }
+
+        if (selectedIndex === currentQuiz.correct) {
+            selectedButton.classList.add("correct");
+            rightAnswers++;
+            document.getElementById("right-count").innerText = rightAnswers;
+        } else {
+            selectedButton.classList.add("wrong");
+            buttons[currentQuiz.correct].classList.add("correct");
+            wrongAnswers++;
+            document.getElementById("wrong-count").innerText = wrongAnswers;
+        }
+
+        explanationElement.innerText = currentQuiz.info;
+        explanationElement.style.display = "block";
+        nextButton.style.display = "block";
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+        } else {
+            questionElement.innerText = "Quiz Poora Ho Gaya!";
+            optionsContainer.innerHTML = "";
+            explanationElement.style.display = "none";
+            nextButton.style.display = "none";
+        }
+    }
+
+    loadQuestion();
+</script>
+
+</body>
+</html>
